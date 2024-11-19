@@ -116,4 +116,23 @@ public class MemberDAO extends JDBConnect {
         return dto;
     }
 
+    public boolean checkDuplicate(String id, String email) {
+        boolean isDuplicate = false;
+        String query = "SELECT COUNT(*) FROM member WHERE id=? OR email=?";
+        try {
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, id);
+            psmt.setString(2, email);
+            rs = psmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                isDuplicate = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return isDuplicate;
+    }
+
 }

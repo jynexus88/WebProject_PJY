@@ -1,13 +1,13 @@
 package membership;
 
 public class MemberDTO {
-    private String id;       // 회원 아이디
-    private String pass;     // 회원 비밀번호
-    private String name;     // 회원 이름
-    private String email;    // 이메일
-    private String phone;    // 전화번호
-    private String regidate; // 가입일
-
+    private String id;      
+    private String pass;     
+    private String name;    
+    private String email;   
+    private String phone;    
+    private String regidate; 
+    
     public String getId() {
         return id;
     }
