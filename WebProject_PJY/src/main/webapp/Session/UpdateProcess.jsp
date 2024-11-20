@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="membership.MemberDAO, membership.MemberDTO" %>
 <%
-	// 로그인 여부 확인
-	String userId = (String)session.getAttribute("id");
-	if (userId == null) {
-			response.sendRedirect("../login.jsp");
-			return;
-	}
 
-	// 로그인된 상태면 회원정보 수정 진행
-    userId = (String) session.getAttribute("id");
+	// 회원정보 수정 진행
+    String userId = (String) session.getAttribute("id");
     String name = request.getParameter("name");
     String phone = request.getParameter("phone");
     String newPassword = request.getParameter("pass");

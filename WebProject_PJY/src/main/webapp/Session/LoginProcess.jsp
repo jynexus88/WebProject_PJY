@@ -18,9 +18,10 @@
     // 데이터베이스에 일치하는 사용자(id, pass)가 있는지 확인하여  
     // MemberDTO객체가 null이 아니고, id정보가 존재하는 경우 로그인 성공 처리
     if (member != null && member.getId() != null) {
-        // 로그인 성공 => 세션에 id, 이름을 저장하여 로그인 상태 유지
+        // 로그인 성공 => 세션에 저장하여 로그인 상태 유지
         session.setAttribute("id", member.getId());
         session.setAttribute("name", member.getName());
+        session.setAttribute("password", member.getPass());
         // index.jsp로 리다이렉트하여 로그인 후 화면 표시
         response.sendRedirect("../index.jsp");
     } 

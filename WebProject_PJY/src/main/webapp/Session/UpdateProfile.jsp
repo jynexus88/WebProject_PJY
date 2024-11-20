@@ -7,6 +7,7 @@
         return;
     }
 
+    // 로그인된 사용자 정보 가져오기
     MemberDAO dao = new MemberDAO(application);
     MemberDTO member = dao.getMemberDTOById(id);
     dao.close();
@@ -16,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
+    <title>회원정보수정</title>
     <link href="../css/styles.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>

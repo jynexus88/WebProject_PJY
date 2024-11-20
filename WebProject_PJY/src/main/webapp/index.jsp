@@ -8,40 +8,54 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Dashboard</title>
+<link href="<%=request.getContextPath()%>/css/styles.css"
+	rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/scripts.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
+
 	<!-- 상단 네비게이션 바 -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="index.jsp"
-			style="font-family: 'Arial', sans-serif; font-size: 24px; color: #4CAF50; text-decoration: none; font-weight: bold;">
-			GreenTalk </a>
-		<!-- Sidebar Toggle-->
-		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-			id="sidebarToggle" href="#!">
-			<i class="fas fa-bars"></i>
-		</button>
+			style="font-family: 'Arial', sans-serif; font-size: 20px; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);">
+			🌱 초록 친구들 </a>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 				role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i
 					class="fas fa-user fa-fw"></i>
-			</a>
+			</a> <%
+ String userId = (String) session.getAttribute("id");
+ %>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="Session/UpdateProfile.jsp">회원정보수정</a></li>
+					<%
+					if (userId != null) {
+					%>
+					<!-- 로그인 상태 -->
+					<li><a class="dropdown-item" href="Session/PasswordCheck.jsp">회원정보수정</a></li>
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item" href="Session/Logout.jsp">로그아웃</a></li>
+					<%
+					} else {
+					%>
+					<!-- 비로그인 상태 -->
+					<li><a class="dropdown-item" href="login.jsp">로그인</a></li>
+					<li><a class="dropdown-item" href="register.jsp">회원가입</a></li>
+					<%
+					}
+					%>
 				</ul></li>
 		</ul>
 	</nav>
+
 	<!-- 사이드바 -->
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
@@ -49,64 +63,28 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">MAIN</div>
-						<a class="nav-link" href="index.jsp">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> Home
-						</a> <a class="nav-link" href="introduce.jsp">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> Introduce
-						</a>
-						<div class="sb-sidenav-menu-heading">LIST</div>
-						<a class="nav-link" href="freeboard.js">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> 자유게시판
-						</a>
-						<a class="nav-link" href="freeboard.js">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> Q&A
-						</a>
-						<a class="nav-link" href="freeboard.js">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> 자료실
-						</a>												
+						<!-- MAIN Section -->
+						<div class="sb-sidenav-menu-heading"
+							style="color: #81C784; font-weight: bold;">🌳 초록 이야기 시작 🌳
+						</div>
+						<a class="nav-link" href="index.jsp" style="font-size: 14px;">
+							시작 화면 </a> <a class="nav-link" href="introduce.jsp"
+							style="font-size: 14px;"> 초록 이야기 </a>
+						<!-- LIST Section -->
+						<div class="sb-sidenav-menu-heading"
+							style="color: #81C784; font-weight: bold;">🏡 함께 나누는 공간 🏡
+						</div>
+						<a class="nav-link" href="FreeBoard/list.jsp" style="font-size: 14px;">
+							초록 친구 자랑 </a> <a class="nav-link" href="FreeBoard/list.jsp"
+							style="font-size: 14px;"> 초록 Q&A </a> <a class="nav-link"
+							href="resources.js" style="font-size: 14px;"> 초록 자료실 </a>
 					</div>
-				</div>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">Dashboard</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">Dashboard</li>
-					</ol>
-					<!-- 콘텐츠 영역 -->
-				</div>
-			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">&copy; Your Website 2023</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
 	</div>
+
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
