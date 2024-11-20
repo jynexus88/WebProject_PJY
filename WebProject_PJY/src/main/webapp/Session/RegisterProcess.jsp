@@ -9,13 +9,12 @@
 
     MemberDAO dao = new MemberDAO(application);
 
+    // DAO의 checkDuplicate() 메소드 호출: 회원가입 시 아이디, 이메일 중복여부 확인
     boolean isDuplicate = dao.checkDuplicate(id, email);
-
     if (isDuplicate) {
-        // ID 또는 이메일 중복 시 알림 띄우기
 %>
         <script>
-            alert("ID or Email already exists. Please use a different one.");
+            alert("ID 또는 이메일이 중복됩니다. 다른 값을 사용해주세요.");
             history.back(); // 이전 페이지로 이동
         </script>
 <%
@@ -28,20 +27,21 @@
         member.setPhone(phone);
 
         int result = dao.insertMember(member);
-
+		
+        // 회원가입 성공 시 알림 후 로그인 페이지로 이동
         if (result == 1) {
-            // 회원가입 성공 시 알림 후 로그인 페이지로 이동
 %>
             <script>
-                alert("Registration successful! You can now log in.");
+                alert("가입해주셔서 감사합니다. 로그인 후 다양한 서비스를 만나보세요.");
                 location.href = "../login.jsp"; // 로그인 페이지로 이동
             </script>
+       
 <%
+		// 회원가입 실패 시 에러메세지 팝업 후 이전 페이지로 이동
         } else {
-            // 회원가입 실패 시 알림 띄우기
 %>
             <script>
-                alert("An error occurred during registration. Please try again.");
+                alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
                 history.back(); // 이전 페이지로 이동
             </script>
 <%

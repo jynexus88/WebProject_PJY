@@ -4,12 +4,16 @@ import java.sql.*;
 import jakarta.servlet.ServletContext;
 
 public class JDBConnect {
+	// DB연결을 관리하는 객체
     protected Connection con;
+    // SQL쿼리 실행 객체
     protected PreparedStatement psmt;
+    // SQL실행 결과를 저장하는 객체
     protected ResultSet rs;
 
     public JDBConnect(ServletContext application) {
         try {
+        	// application.getIntiParameter(): web.xml에서 DB연결 정보를 가져옴
             String driver = application.getInitParameter("OracleDriver");
             String url = application.getInitParameter("OracleURL");
             String id = application.getInitParameter("OracleId");

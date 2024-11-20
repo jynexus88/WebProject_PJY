@@ -54,7 +54,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="login.jsp">Already have an account? Login!</a></div>
+                                    <div class="small"><a href="login.jsp">이미 계정이 있으신가요? 로그인하세요!</a></div>
                                 </div>
                             </div>
                         </div>
