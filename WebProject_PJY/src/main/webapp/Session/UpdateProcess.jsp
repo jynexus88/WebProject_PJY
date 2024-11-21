@@ -26,15 +26,15 @@
     if (result == 1) {
 %>
         <script>
-            alert("회원정보가 수정되었습니다.");
-            location.href = "../index.jsp";
+            alert("회원정보가 수정되었습니다. 다시 로그인해주세요.");
+            location.href = "Logout.jsp";
         </script>
 <%
     } else {
 %>
         <script>
             alert("회원정보 수정 중 오류가 발생했습니다.");
-            location.href = "UpdateProfile.jsp";
+            location.href = "../UpdateProfile.jsp";
         </script>
 <%
     }

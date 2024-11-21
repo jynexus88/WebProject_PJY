@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="css/styles.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>회원가입</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -19,8 +21,9 @@
                                 <div class="card-header">
                                     <h3 class="text-center font-weight-light my-4">Sign Up</h3>
                                 </div>
+                                
+                                <!-- 회원가입 폼 -->
                                 <div class="card-body">
-                                    <!-- 회원가입 폼 -->
                                     <form action="Session/RegisterProcess.jsp" method="post">
                                         <!-- ID 입력 -->
                                         <div class="form-floating mb-3">
@@ -53,9 +56,12 @@
                                         </div>
                                     </form>
                                 </div>
+                                
+                                <!-- 회원가입 한 경우 -->
                                 <div class="card-footer text-center py-3">
                                     <div class="small"><a href="login.jsp">이미 계정이 있으신가요? 로그인하세요!</a></div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

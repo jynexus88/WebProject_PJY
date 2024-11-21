@@ -13,6 +13,7 @@ public class FreeBoardDAO extends JDBConnect {
 		super(application);
 	}
 	
+	// ㅇ
 	public int insertFreeBoard(FreeBoardDTO dto) {
 		int result = 0;
 		String query = "INSERT INTO free_board (user_id, title, content) VALUES (?, ?, ?)";
@@ -30,8 +31,11 @@ public class FreeBoardDAO extends JDBConnect {
 		return result;
 	}
 	
+	// 목록 출력을 위한 메서드
     public List<FreeBoardDTO> getAllPosts() {
+    	// FreeBoardDTO 인스턴스를 저장할 수 있는 리스트 생성
         List<FreeBoardDTO> postList = new ArrayList<>();
+        // select 쿼리문 작성
         String query = "SELECT * FROM free_board ORDER BY created_at DESC";
 
         try {
