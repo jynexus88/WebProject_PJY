@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
   <display-name>WebProject_PJY</display-name>
+  <!-- 프로젝트 실행시 제일 먼저 실행될 요청명 혹은 파일명 설정 -->
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
+    <welcome-file>index.do</welcome-file>
   </welcome-file-list>
   
 	<!-- 데이터베이스 연결을 위한 접속정보를 컨텍스트 초기화 파라미터로 설정 -->
@@ -30,5 +27,15 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>  
+
+	<!-- 자유게시판 목록 서블릿 게시판 목록 매핑 -->
+	<servlet>
+		<servlet-name>FreeBoardList</servlet-name>
+		<servlet-class>free_board.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FreeBoardList</servlet-name>
+		<url-pattern>/free_board/list.do</url-pattern>
+	</servlet-mapping>	
   
 </web-app>

@@ -31,7 +31,7 @@ public class JDBConnect {
         }
     }
 
-    // 연결 상태 확인 및 재연결
+	// 연결 상태 확인 및 재연결
     public void ensureConnection(ServletContext application) {
         try {
             if (con == null || con.isClosed()) {
@@ -47,7 +47,7 @@ public class JDBConnect {
                 System.out.println("DB 재연결 성공");
             }
         } catch (Exception e) {
-            System.err.println("DB 재연결 실패: " + e.getMessage());
+            System.out.println("DB 재연결 실패: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -59,7 +59,7 @@ public class JDBConnect {
             if (con != null) con.close();
             System.out.println("JDBC 자원 해제 완료");
         } catch (Exception e) {
-            System.err.println("JDBC 자원 해제 중 오류: " + e.getMessage());
+            System.out.println("JDBC 자원 해제 중 오류: " + e.getMessage());
         }
     }
 }

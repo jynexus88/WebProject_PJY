@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="free_board.FreeBoardDAO, free_board.FreeBoardDTO" %>
-<%@ page import="java.util.List"%>
-<%
-    FreeBoardDAO dao = new FreeBoardDAO(application);
-    List<FreeBoardDTO> posts = dao.getAllPosts();
-%>
-
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -113,24 +107,59 @@
                                 </thead>
                                 <!-- 리스트 출력 -->
                                 <tbody>
-                                    <% for (FreeBoardDTO post : posts) { %>
-                                        <tr>
-                                            <td><%= post.getPost_id() %></td>
-                                            <td><a href="view.jsp?post_id=<%= post.getPost_id() %>"><%= post.getTitle() %></a></td>
-                                            <td><%= post.getUser_id() %></td>
-                                            <td><%= post.getCreated_at() %></td>
-                                            <td><%= post.getViews() %></td>
-                                            <td><%= post.getLikes() %></td>
+                                	<c:choose>
+                                		<c:when test="${empty boardLists}">
+                                			<tr>
+                                				<td colspan="6" align="center">등록된 게시물이 없습니다.</td>
+                                			</tr>
+                                		</c:when>
+                                	<c:otherwise>
+                                    <c:forEach items="${boardLists}" var="post" varStatus="loop" >
+                                    <tr align="center">
+                                    	<td>
+                                    		<!-- totalCount에서 인출되는 인스턴스의 인덱스를 차막해서 순차적인 번호를 출력 -->
+                                    		${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index) }
+                                    	</td>
+                                    	<td align="left">
+            							<!-- 제목 클릭시 '열람'페이지로 이동해야하므로 게시물의 일련번호를 파라미터로 전달한다. -->
+            						    <a href="../free_board/view.do?post_id=${post.post_id}">${post.title}</a> 
+            						    </td>
+                                        	<!-- 각 멤버변수의 getter()를 통해 저장된 값을 출력한다. -->
+                                            <td>${post.post_id}</td>
+                                            <td>${post.title}</td>
+                                            <td>${post.user_id}</td>
+                                            <td>${post.created_at}</td>
+                                            <td>${post.views}</td>
+                                            <td>${post.likes}</td>
                                         </tr>
-                                    <% } %>
-                                </tbody>
+                                    </c:forEach>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </tbody> 
                             </table>
-                        </div>
+                            
+                        <!-- 검색 폼 -->
+						<form action="/free_board/list.do" method="get" class="d-flex justify-content-center my-3">
+    						<div class="input-group" style="width: 60%;">
+       							<!-- 검색 필드 선택 -->
+        						<select name="searchField" class="form-select" style="max-width: 20%;">
+    	        					<option value="title">제목</option>
+      	 	     					<option value="user_id">작성자</option>
+       							</select>
+        						<!-- 검색어 입력 -->
+       							<input type="text" name="searchWord" class="form-control" placeholder="검색어를 입력하세요" />
+        						<!-- 검색 버튼 -->
+      							<button type="submit" class="btn btn-primary">검색</button>
+					 	  	</div>
+						</form>
+						
+                      </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>
 </body>
